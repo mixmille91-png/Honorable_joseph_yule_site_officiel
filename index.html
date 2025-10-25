@@ -1,687 +1,613 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Honorable Yule Okoma Joseph - Député Provincial</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --primary: #1a3a5f;
-      --accent: #b30000;
-      --gold: #d4af37;
-      --font-title: 'Playfair Display', serif;
-      --font-heading: 'Montserrat', sans-serif;
-      --font-body: 'Open Sans', sans-serif;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: var(--font-body);
-      scroll-behavior: smooth;
-      background-color: #f8f9fa;
-      line-height: 1.6;
-      color: #333;
-    }
-
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: var(--primary);
-      z-index: 1000;
-      padding: 15px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    .navbar li {
-      margin: 0 20px;
-    }
-
-    .navbar a {
-      color: white;
-      text-decoration: none;
-      font-family: var(--font-heading);
-      font-weight: bold;
-      transition: color 0.3s ease;
-      font-size: 1rem;
-    }
-
-    .navbar a:hover {
-      color: var(--gold);
-    }
-
-    header {
-      height: 100vh;
-      background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .header-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.3;
-      filter: brightness(0.7) contrast(1.1);
-      transform: scale(1.01);
-      transition: transform 0.5s ease;
-    }
-
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      z-index: 1;
-    }
-
-    .header-content {
-      position: relative;
-      z-index: 2;
-      animation: fadeIn 2s ease-out;
-      padding: 0 20px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-
-    .section {
-      padding: 100px 20px;
-      max-width: 1200px;
-      margin: auto;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease-out;
-    }
-
-    .section.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .section h2 {
-      font-family: var(--font-title);
-      font-size: 2.5em;
-      color: var(--primary);
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .section p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      color: #333;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 30px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .media-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      background: #f8f8f8;
-    }
-
-    .gallery img, .gallery video {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      transition: all 0.5s ease;
-      filter: brightness(1) contrast(1) saturate(1);
-      transform: scale(1);
-    }
-
-    .gallery img:hover, .gallery video:hover {
-      transform: scale(1.05);
-      filter: brightness(1.05) contrast(1.05) saturate(1.1);
-    }
-
-    .media-loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
-      border: 3px solid #f3f3f3;
-      border-top: 3px solid var(--accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      display: none;
-    }
-
-    @keyframes spin {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-    .services-grid, .team, .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    .service-card, .team-member, .testimonial {
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.3s ease;
-      border-top: 4px solid var(--primary);
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .team-member img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      filter: grayscale(0.2) contrast(1.1);
-      transition: all 0.5s ease;
-    }
-
-    .team-member:hover img {
-      filter: grayscale(0) contrast(1.2) brightness(1.05);
-      transform: scale(1.05);
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    input, textarea {
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: var(--font-body);
-      font-size: 1em;
-      width: 100%;
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    button {
-      background-color: var(--primary);
-      color: white;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 4px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-size: 1em;
-    }
-
-    button:hover {
-      background-color: #142f4d;
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid white;
-      color: white;
-    }
-
-    .btn-outline:hover {
-      background: white;
-      color: var(--primary);
-    }
-
-    .quality-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: var(--accent);
-      color: white;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 0.8em;
-      font-weight: bold;
-      z-index: 10;
-    }
-
-    .quality-controls {
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    .quality-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      margin: 0 5px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .quality-btn.active {
-      background: var(--accent);
-    }
-
-    footer {
-      background-color: var(--primary);
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-      margin-top: 50px;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .social-links a {
-      color: white;
-      font-size: 1.5rem;
-      transition: color 0.3s ease;
-    }
-
-    .social-links a:hover {
-      color: var(--gold);
-    }
-
-    /* Styles pour le bloc média politique */
-    .media-block {
-      margin: 40px auto;
-      text-align: center;
-      animation: fadeIn 1s ease-out;
-      max-width: 1000px;
-    }
-
-    .media-block picture {
-      display: block;
-    }
-
-    .media-block img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .media-block img:hover {
-      transform: scale(1.02);
-    }
-
-    .media-block figcaption {
-      margin-top: 10px;
-      font-style: italic;
-      color: #666;
-      font-size: 0.9em;
-    }
-
-    /* Styles pour la section des liens officiels */
-    #liens-officiels {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      padding: 80px 20px;
-    }
-
-    #liens-officiels ul {
-      list-style: none;
-      max-width: 800px;
-      margin: 30px auto;
-    }
-
-    #liens-officiels li {
-      margin: 15px 0;
-      padding: 15px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
-
-    #liens-officiels li:hover {
-      transform: translateX(10px);
-    }
-
-    #liens-officiels a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1em;
-      display: block;
-    }
-
-    #liens-officiels a:hover {
-      color: var(--accent);
-    }
-
-    .badge-officiel {
-      background: var(--gold);
-      color: var(--primary);
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 0.8em;
-      margin-left: 10px;
-      font-weight: bold;
-    }
-
-    @media screen and (max-width: 768px) {
-      .navbar ul {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .navbar li {
-        margin: 10px 0;
-      }
-
-      .section {
-        padding: 60px 20px;
-      }
-
-      .section h2 {
-        font-size: 2em;
-      }
-
-      .gallery, .services-grid, .team, .testimonials {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery img, .gallery video {
-        height: 200px;
-      }
-
-      .header-content h1 {
-        font-size: 2.5em !important;
-      }
-
-      .header-content p {
-        font-size: 1.2em !important;
-      }
-
-      .quality-controls {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .quality-btn {
-        width: 200px;
-      }
-
-      #liens-officiels li {
-        padding: 12px;
-      }
-
-      #liens-officiels a {
-        font-size: 1em;
-      }
-    }
-
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      .gallery img, .team-member img, .header-bg {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'HONORABLE JOSEPH YULE MUTU YA BATU</title>
+    <style>
+        /* RESET ET STYLES DE BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* POLICES HIÉRARCHISÉES */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #34495e;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        /* MENU FIXE */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: #f1c40f;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #f1c40f;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: white;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(52, 152, 219, 0.7)), url('https://source.unsplash.com/random/1920x1080/?congo,kisangani');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #f0f0f0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* CONTENU DES SECTIONS */
+        .content-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .content-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-card:hover {
+            background: #e9ecef;
+            transform: translateX(10px) translateY(0);
+        }
+
+        .achievement-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .achievement-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e9ecef;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .achievement-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .resource-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* FORMULAIRE */
+        .contact-form {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 4rem 1rem;
+                margin: 1rem auto;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .contact-form {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- MENU FIXE -->
+    <header>
+        <nav>
+            <div class="logo">L'HONORABLE JOSEPH YULE MUTU YA BATU</div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#parcours">Parcours Politique</a></li>
+                <li><a href="#actions">Actions & Réalisations</a></li>
+                <li><a href="#education">Initiatives Éducatives</a></li>
+                <li><a href="#engagements">Engagements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle" aria-label="Menu mobile">☰</button>
+        </nav>
+    </header>
 
-  <nav class="navbar">
-    <ul>
-      <li><a href="#accueil">Accueil</a></li>
-      <li><a href="#actions">Actions</a></li>
-      <li><a href="#apropos">À Propos</a></li>
-      <li><a href="#actualites">Actualités</a></li>
-      <li><a href="#liens-officiels">Liens Officiels</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+    <!-- SECTION HERO -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>L'HONORABLE JOSEPH YULE MUTU YA BATU</h1>
+            <p>Député Provincial de la Tshopo - Représentant de la Commune de Lubunga</p>
+            <p>Engagé pour le développement des infrastructures et l'amélioration des conditions de vie</p>
+            <a href="#parcours" class="btn">Découvrir son Action</a>
+        </div>
+    </section>
 
-  <header id="accueil">
-    <picture class="header-bg">
-      <source srcset="images/yule-okoma-4k.webp" type="image/webp" media="(min-width: 1200px)">
-      <source srcset="images/yule-okoma-hd.webp" type="image/webp" media="(min-width: 768px)">
-      <source srcset="images/yule-okoma-mobile.webp" type="image/webp" media="(max-width: 767px)">
-      <img src="images/yule-okoma.jpg" alt="Honorable Yule Okoma Joseph - Député Provincial" loading="eager" decoding="sync" style="max-width:100%; height:auto;">
-    </picture>
-    <div class="header-content">
-      <h1 style="font-size: 3.5em; margin-bottom: 20px;">Honorable Yule Okoma Joseph</h1>
-      <p style="font-size: 1.5em; margin-bottom: 30px;">Député Provincial - Représentant du Peuple</p>
-      <a href="#contact" class="btn-outline" style="text-decoration: none; padding: 12px 30px; border-radius: 5px; transition: all 0.3s ease; display: inline-block;">Contact Citoyen</a>
-    </div>
-  </header>
+    <!-- SECTION PARCOURS POLITIQUE -->
+    <section id="parcours">
+        <h2 class="section-title">🧑‍⚖️ Parcours et Rôle Politique</h2>
+        <div class="content-card">
+            <p>L'honorable Joseph Yule est un député provincial actif dans la province de la Tshopo, notamment dans la commune urbano-rurale de Lubunga, située sur la rive gauche de Kisangani. Il est reconnu pour son engagement dans le développement des infrastructures locales et l'amélioration des conditions de vie de ses électeurs.</p>
+            <p>Son mandat se caractérise par une présence constante sur le terrain et une écoute attentive des préoccupations de la population qu'il représente à l'assemblée provinciale.</p>
+        </div>
+    </section>
 
-  <section id="actions" class="section reveal">
-    <h2>Actions et Réalisations</h2>
-    <p>Engagé pour le développement et le progrès de notre province</p>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Infrastructures Routières</h3>
-        <p>15 km de routes asphaltées et éclairage public à Lubunga grâce au lobbying parlementaire</p>
-      </div>
-      <div class="service-card">
-        <h3>Accès à l'Eau Potable</h3>
-        <p>Construction de puits de forage pour lutter contre la pénurie d'eau à Kisangani</p>
-      </div>
-      <div class="service-card">
-        <h3>Partenariat Médias</h3>
-        <p>Renforcement de la collaboration avec les journalistes pour une information transparente</p>
-      </div>
-    </div>
-  </section>
+    <!-- SECTION ACTIONS ET RÉALISATIONS -->
+    <section id="actions">
+        <h2 class="section-title">🛠️ Actions et Réalisations Publiques</h2>
+        <div class="content-card">
+            <h3>🔹 Lobbying pour les Infrastructures</h3>
+            <p>Grâce à son lobbying actif, Joseph Yule a permis à la commune de Lubunga de bénéficier de:</p>
+            <ul class="achievement-list">
+                <li>15 km de routes asphaltées</li>
+                <li>Éclairage public moderne</li>
+            </ul>
+            <p>Ces projets visent à désenclaver la commune et à améliorer la sécurité et la mobilité des habitants.</p>
+            <a href="https://lumiernews.net/tshopo-grace-au-lobbyng-payant-du-depute-provincial-joseph-yule-la-commune-lubunga-va-beneficier-de-15-km-des-routes-asphaltees-et-leclairage-public" class="resource-link" target="_blank">📰 Lire l'article sur Lumière News</a>
+        </div>
+    </section>
 
-  <section id="apropos" class="section reveal">
-    <h2>À Propos du Député</h2>
-    <p>Parlementaire engagé au service du développement provincial et national</p>
-    <div class="team">
-      <div class="team-member">
-        <picture>
-          <source srcset="images/profil-4k.webp" type="image/webp" media="(min-width: 1200px)">
-          <source srcset="images/profil-hd.webp" type="image/webp" media="(min-width: 768px)">
-          <source srcset="images/profil-mobile.webp" type="image/webp" media="(max-width: 767px)">
-          <img src="images/profil.jpg" alt="Portrait officiel de l'Honorable Yule Okoma Joseph" loading="lazy" decoding="async" width="150" height="150">
-        </picture>
-        <h3>Honorable Yule Okoma Joseph</h3>
-        <p>Député Provincial</p>
-        <p>Représentant du peuple, défenseur du développement et de la démocratie</p>
-      </div>
-    </div>
-  </section>
+    <!-- SECTION INITIATIVES ÉDUCATIVES -->
+    <section id="education">
+        <h2 class="section-title">📚 Bibliothèque ou Initiatives Éducatives</h2>
+        <div class="content-card">
+            <p>À ce jour, aucune source officielle ne mentionne une bibliothèque personnelle ou un projet éducatif spécifique porté par Joseph Yule. Toutefois, son implication dans des projets de développement local pourrait inclure des volets éducatifs indirects, notamment via des partenariats avec des ONG ou des programmes provinciaux.</p>
+        </div>
+    </section>
 
-  <section id="actualites" class="section reveal">
-    <h2>Galerie d'Actualités</h2>
-    <p>Moments marquants et actions sur le terrain</p>
-    
-    <div class="quality-controls">
-      <button class="quality-btn active" onclick="setMediaQuality('auto')">Qualité Auto</button>
-      <button class="quality-btn" onclick="setMediaQuality('high')">Haute Qualité</button>
-    </div>
+    <!-- SECTION ENGAGEMENTS SOCIAUX -->
+    <section id="engagements">
+        <h2 class="section-title">🤝 Engagements Sociaux et Communautaires</h2>
+        <div class="content-card">
+            <p>Bien que les détails précis de ses activités sociales ne soient pas largement documentés, son action politique semble orientée vers:</p>
+            <ul class="achievement-list">
+                <li>Le désenclavement des zones rurales</li>
+                <li>L'amélioration des services publics</li>
+                <li>La représentation active des intérêts de la commune de Lubunga au sein de l'assemblée provinciale</li>
+            </ul>
+        </div>
 
-    <div class="gallery">
-      <div class="media-container">
-        <div class="media-loader"></div>
-        <span class="quality-badge">Officiel</span>
-        <figure class="media-block" data-quality="auto">
-          <picture>
-            <source srcset="images/conference-4k.webp" type="image/webp" media="(min-width: 1200px)">
-            <source srcset="images/conference-hd.webp" type="image/webp" media="(min-width: 768px)">
-            <source srcset="images/conference-mobile.webp" type="image/webp" media="(max-width: 767px)">
-            <img src="images/conference.jpg" alt="L'Honorable Yule Okoma Joseph lors d'une conférence parlementaire" loading="lazy" decoding="async" style="max-width:100%; height:auto;">
-          </picture>
-          <figcaption>Intervention à l'Assemblée Provinciale sur les questions de développement</figcaption>
-        </figure>
-      </div>
-      <div class="media-container">
-        <div class="media-loader"></div>
-        <span class="quality-badge">Terrain</span>
-        <figure class="media-block" data-quality="auto">
-          <picture>
-            <source srcset="images/reunion-4k.webp" type="image/webp" media="(min-width: 1200px)">
-            <source srcset="images/reunion-hd.webp" type="image/webp" media="(min-width: 768px)">
-            <source srcset="images/reunion-mobile.webp" type="image/webp" media="(max-width: 767px)">
-            <img src="images/reunion.jpg" alt="Réunion de travail avec les communautés locales" loading="lazy" decoding="async" style="max-width:100%; height:auto;">
-          </picture>
-          <figcaption>Échange avec les citoyens sur les priorités de développement local</figcaption>
-        </figure>
-      </div>
-      <div class="media-container">
-        <div class="media-loader"></div>
-        <span class="quality-badge">Projet</span>
-        <figure class="media-block" data-quality="auto">
-          <picture>
-            <source srcset="images/inauguration-4k.webp" type="image/webp" media="(min-width: 1200px)">
-            <source srcset="images/inauguration-hd.webp" type="image/webp" media="(min-width: 768px)">
-            <source srcset="images/inauguration-mobile.webp" type="image/webp" media="(max-width: 767px)">
-            <img src="images/inauguration.jpg" alt="Inauguration des nouveaux projets d'infrastructure" loading="lazy" decoding="async" style="max-width:100%; height:auto;">
-          </picture>
-          <figcaption>Inauguration des travaux de voirie dans le district de Lubunga</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
+        <h3 class="section-title">📎 Autres Ressources Utiles</h3>
+        <div class="content-card">
+            <a href="https://www.enabel.be/app/uploads/2023/11/Annexe-2-Presentation-generale-Tshopo.pdf" class="resource-link" target="_blank">📄 Programme de coopération Tshopo 2023–2027 (Enabel)</a>
+            <a href="https://www.congoquotidien.com/2024/12/09/actualite-rdc-tshopo-formation-budget/" class="resource-link" target="_blank">📊 Formation des députés provinciaux à la gestion budgétaire (USAID)</a>
+        </div>
+    </section>
 
-  <section id="liens-officiels" class="section reveal">
-    <h2>Actualités et Actions de l'Honorable Yule Okoma Joseph</h2>
-    <p>Retrouvez toutes les informations officielles et les réalisations concrètes</p>
-    <ul>
-      <li>
-        <a href="https://lumiernews.net/tshopo-grace-au-lobbyng-payant-du-depute-provincial-joseph-yule-la-commune-lubunga-va-beneficier-de-15-km-des-routes-asphaltees-et-leclairage-public/" target="_blank">
-          15 km de routes asphaltées à Lubunga
-          <span class="badge-officiel">Officiel</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.laclocheducongo.com/2024/11/kisanganipenurie-deau-un-puit-forage.html" target="_blank">
-          Puits de forage contre la pénurie d'eau
-          <span class="badge-officiel">Officiel</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://depechesdelatshopo.com/depute-provincial-et-journalistes-un-partenariat-renforce-lors-de-la-journee-mondiale-de-la-radio-a-kisangani/" target="_blank">
-          Partenariat avec les journalistes
-          <span class="badge-officiel">Officiel</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://depechesdelatshopo.com/35-ans-de-la-chorale-amani-le-depute-joseph-yule-okoma-fait-un-don-precieux-a-la-paroisse-sainte-marthe-de-lubunga-kisangani/" target="_blank">
-          Don à la chorale AMANI
-          <span class="badge-officiel">Officiel</span>
-        </a>
-      </li>
-    </ul>
-  </section>
+    <!-- SECTION CONTACT -->
+    <section id="contact">
+        <h2 class="section-title">📞 Contact</h2>
+        <div class="contact-form">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="
+e032e789-7a9f-4b52-9ca0-91e838645ab9"> <!-- Remplacez par votre clé Web3Forms -->
+                <input type="hidden" name="subject" value="Nouveau message depuis le site - L'HONORABLE JOSEPH YULE">
+                <input type="checkbox" name="botcheck" style="display: none;">
+                
+                <div class="form-group">
+                    <label for="name">Nom complet *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Adresse email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Numéro de téléphone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Votre message *</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Votre message..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">📨 Envoyer le message</button>
+                
+                <div id="result" style="margin-top: 1rem;"></div>
+            </form>
+        </div>
+    </section>
 
-  <section id="contact" class="section reveal">
-    <h2>Contact Citoyen</h2>
-    <p>Votre député est à votre écoute pour porter votre voix à l'Assemblée</p>
-    <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
-      <input type="hidden" name="access_key" id="form-key" value="Ve032e789-7a9f-4b52-9ca0-91e838645ab9">
-      <input type="text" name="name" placeholder="Votre nom complet" required>
-      <input type="email" name="email" placeholder="Votre adresse email" required>
-      <input type="text" name="sujet" placeholder="Sujet de votre message" required>
-      <textarea name="message" placeholder="Votre message ou préoccupation..." required></textarea>
-      <button type="submit">Envoyer le Message</button>
-    </form>
-    
-    <div style="text-align: center; margin-top: 30px;">
-      <p style="margin-bottom: 15px; font-weight: bold;">Contact Direct :</p>
-      <p>Assemblée Provinciale - Bureau du Député</p>
-      <p>Email: contact@yuleokoma.cd | Téléphone: +243 824 182 078</p>
-      <div class="social-links">
-        <a href="#" id="social-facebook">Facebook</a>
-        <a href="#" id="social-twitter">Twitter</a>
-        <a href="#" id="social-linkedin">LinkedIn</a>
-      </div>
-    </div>
-  </section>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 L'HONORABLE JOSEPH YULE MUTU YA BATU - Député Provincial de la Tshopo.</p>
+            <p>Représentant de la Commune Urbano-Rurale de Lubunga, Kisangani</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Tous droits réservés.</p>
+        </div>
+    </footer>
 
-  <footer>
-    <p>&copy; 2024 Honorable Yule Okoma Joseph - Tous droits réservés</p>
-    <p>Représentant du Peuple à l'Assemblée Provinciale</p>
-    <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">Site officiel - Transparence et Redevabilité</p>
-  </footer>
-
-  <script>
-    // Configuration politique adaptée
-    const CONFIG = {
-      TYPE: "politique",
-      
-      INFORMATIONS: {
-        nom: "Honorable Yule Okoma Joseph",
-        titre: "Député Provincial",
-        email: "contact@yuleokoma.cd",
-        telephone: "+243 824 182 078",
-        circonscription: "Province de la Tshopo",
-        bio: "Représentant du peuple, engagé pour le développement provincial et national"
-      },
-      
-      IMAGES: {
-        banniere: "images/yule-okoma.jpg",
-        photoProfil: "images/profil.jpg",
-        portfolio1: "images/conference.jpg",
-        portfolio2: "images/reunion.jpg", 
-        portfolio3: "images/inauguration.jpg"
-      }
-    };
-
-    // Initialisation du site
-    document.addEventListener('DOMContentLoaded', function() {
-      // Animation au défilement
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
+    <script>
+        // MENU TOGGLE POUR MOBILE
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+            
+            // Animation du bouton menu
+            this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
-      });
 
-      document.querySelector
+        // FERMER LE MENU QUAND ON CLIQUE SUR UN LIEN
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').textContent = '☰';
+            });
+        });
+
+        // SCROLL DOUX VERS LES SECTIONS
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ANIMATION AU SCROLL
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments à animer
+        document.querySelectorAll('.content-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // CHANGEMENT DE COULEUR DU HEADER AU SCROLL
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, #2c3e50 0%, #2c3e50 100%)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.2)';
+            }
+        });
+
+        // GESTION DU FORMULAIRE WEB3FORMS
+        const form = document.querySelector('form');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            
+            result.innerHTML = "Envoi en cours...";
+            
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept':
